@@ -465,10 +465,20 @@ footer{background:#0a1f22;color:rgba(255,255,255,.72);padding:60px 0 28px}
 .article-meta{display:flex;align-items:center;gap:10px;margin-bottom:18px;font-size:.82rem;color:var(--ink-soft)}
 .article-meta .acat{background:var(--teal-light);color:var(--teal-deep);font-family:'Sora';font-weight:700;padding:4px 11px;border-radius:14px;font-size:.7rem;letter-spacing:.04em;text-transform:uppercase}
 .article-body p{margin-bottom:15px;color:var(--ink-soft);font-size:.97rem;line-height:1.75}
+.article-body h1{font-family:'Sora';font-size:1.4rem;font-weight:800;margin:28px 0 12px;color:var(--ink)}
+.article-body h2{font-family:'Sora';font-size:1.25rem;font-weight:700;margin:26px 0 10px;color:var(--ink)}
 .article-body h3{font-family:'Sora';font-size:1.15rem;font-weight:700;margin:24px 0 10px;color:var(--ink)}
-.article-body ul{margin:0 0 15px 20px;color:var(--ink-soft)}
+.article-body ul,.article-body ol{margin:0 0 15px 20px;color:var(--ink-soft)}
 .article-body li{margin-bottom:8px;line-height:1.7}
 .article-body strong{color:var(--ink);font-weight:600}
+.article-body a{color:var(--teal);text-decoration:underline}
+.article-body img{max-width:100%;border-radius:12px;margin:14px 0}
+.article-body table{width:100%;border-collapse:collapse;margin:16px 0 22px;font-size:.9rem}
+.article-body th,.article-body td{border:1px solid var(--line);padding:9px 12px;text-align:left}
+.article-body th{background:var(--paper-2);font-family:'Sora';font-weight:700;color:var(--ink)}
+.article-body tr:nth-child(even) td{background:var(--paper-2)}
+.article-body hr{border:0;border-top:1px solid var(--line);margin:24px 0}
+.article-body blockquote{border-left:3px solid var(--teal);padding:4px 0 4px 16px;color:var(--ink-soft);font-style:italic;margin:16px 0}
 @media(max-width:560px){
   .modal{padding:28px 22px}
   .calc-row{grid-template-columns:1fr}
@@ -898,43 +908,8 @@ footer{background:#0a1f22;color:rgba(255,255,255,.72);padding:60px 0 28px}
       <h2>Tax made simple — straight from our CAs.</h2>
       <p>Practical guides and updates to help you stay compliant and save more.</p>
     </div>
-    <div class="blog-grid">
-      <article class="post reveal" onclick="openBlog('regime')">
-        <div class="pimg a">
-          <span class="pcat">ITR</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-        </div>
-        <div class="pbody">
-          <span class="pdate">Filing tips · 6 min read</span>
-          <h3>Old vs New Tax Regime: which one is right for you?</h3>
-          <p>A side-by-side breakdown to help salaried taxpayers pick the regime that saves the most.</p>
-          <span class="pread">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </article>
-      <article class="post reveal" onclick="openBlog('gst')">
-        <div class="pimg b">
-          <span class="pcat">GST</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-        </div>
-        <div class="pbody">
-          <span class="pdate">Business · 5 min read</span>
-          <h3>GST returns: due dates &amp; penalties you shouldn't miss</h3>
-          <p>Everything a small business needs to know to stay penalty-free this financial year.</p>
-          <span class="pread">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </article>
-      <article class="post reveal" onclick="openBlog('notice')">
-        <div class="pimg c">
-          <span class="pcat">Notices</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
-        </div>
-        <div class="pbody">
-          <span class="pdate">Compliance · 4 min read</span>
-          <h3>Got an income tax notice? Here's what to do first.</h3>
-          <p>Don't panic. A calm, step-by-step guide to reading and responding to a tax notice.</p>
-          <span class="pread">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </article>
+    <div class="blog-grid" id="blogGrid">
+      <p style="text-align:center;color:var(--ink-soft);grid-column:1/-1">Loading articles…</p>
     </div>
   </div>
 </section>
@@ -1423,42 +1398,48 @@ function calcHra(){
   document.getElementById('hra-result').classList.add('show');
 }
 
-/* ===== BLOGS ===== */
-const blogs={
-  regime:{cat:'ITR',meta:'Filing tips · 6 min read',title:'Old vs New Tax Regime: which one is right for you?',body:`
-    <p>Every year, salaried taxpayers face the same question at filing time — should you stick with the old tax regime and its deductions, or move to the new regime with lower slab rates? The right answer depends entirely on your numbers, so let's break it down.</p>
-    <h3>The core difference</h3>
-    <p>The <strong>new regime</strong> offers lower tax rates but removes most exemptions and deductions. The <strong>old regime</strong> keeps higher rates but lets you claim deductions like 80C, 80D, HRA, home loan interest and more.</p>
-    <h3>When the new regime usually wins</h3>
-    <ul><li>You have few or no investments under 80C</li><li>You don't claim HRA or home loan interest</li><li>You prefer a simple, paperwork-free filing</li></ul>
-    <h3>When the old regime usually wins</h3>
-    <ul><li>You fully use your ₹1.5 lakh 80C limit</li><li>You claim significant HRA or home loan interest</li><li>You have health insurance (80D) and other deductions</li></ul>
-    <p>A useful rule of thumb: if your total deductions cross roughly ₹3.75–4 lakh, the old regime often comes out ahead. But this varies with income level — which is exactly why you should run your own numbers.</p>
-    <div class="article-pullquote">The wrong regime can quietly cost you thousands every year — and most people never realise it.</div>
-    <p><strong>The smart move:</strong> use our Income Tax Calculator to compare both regimes for your exact income, then let one of our CAs verify before you lock it in. A small mistake here can cost thousands.</p>`},
-  gst:{cat:'GST',meta:'Business · 5 min read',title:"GST returns: due dates & penalties you shouldn't miss",body:`
-    <p>For any GST-registered business, missing a return deadline isn't just a paperwork slip — it triggers late fees, interest, and can even block your e-way bills. Here's what every small business should keep on its radar.</p>
-    <h3>The returns that matter most</h3>
-    <ul><li><strong>GSTR-1</strong> — details of outward supplies (sales), filed monthly or quarterly</li><li><strong>GSTR-3B</strong> — summary return with tax payment, filed monthly or quarterly under QRMP</li><li><strong>GSTR-9</strong> — annual return for eligible taxpayers</li></ul>
-    <h3>What late filing costs you</h3>
-    <p>Late fees accrue per day for each return, split across CGST and SGST, subject to a cap. On top of that, interest applies on any unpaid tax. The bigger risk is compliance rating — repeated delays can attract notices and scrutiny.</p>
-    <h3>How to stay penalty-free</h3>
-    <ul><li>Maintain clean books month to month, not at the last minute</li><li>Reconcile your GSTR-2B with purchase records to claim full input credit</li><li>Set reminders a week before each due date</li></ul>
-    <p><strong>The smart move:</strong> Let us handle your monthly GST compliance so deadlines, reconciliations and input credits are never missed. Email <a href="mailto:cafirmagl@gmail.com">cafirmagl@gmail.com</a> to get started.</p>`},
-  notice:{cat:'Notices',meta:'Compliance · 4 min read',title:"Got an income tax notice? Here's what to do first.",body:`
-    <p>Receiving a notice from the Income Tax Department can feel alarming — but most notices are routine and easily resolved if you respond correctly and on time. Here's a calm, step-by-step approach.</p>
-    <h3>Step 1: Don't panic — read carefully</h3>
-    <p>Identify the section under which the notice is issued. Common ones include intimation under 143(1), a request for clarification under 139(9) for a defective return, or scrutiny under 143(2). Each has a different meaning and deadline.</p>
-    <h3>Step 2: Check the details</h3>
-    <ul><li>Verify your name, PAN and assessment year</li><li>Note the response deadline — this is critical</li><li>Understand exactly what is being asked</li></ul>
-    <h3>Step 3: Gather your documents</h3>
-    <p>Pull together the relevant proofs — Form 16, bank statements, investment proofs, or whatever the notice references. Accurate documentation is your strongest response.</p>
-    <h3>Step 4: Respond on time</h3>
-    <p>Most notices are answered online through the e-filing portal. Missing the deadline can lead to penalties or a best-judgment assessment — so never ignore a notice.</p>
-    <p><strong>The smart move:</strong> A wrong reply can make things worse. Forward your notice to <a href="mailto:cafirmagl@gmail.com">cafirmagl@gmail.com</a> and let a CA draft the response for you.</p>`}
+/* ===== BLOGS (dynamic — loaded from /posts.json, generated at build time from /posts/*.md) ===== */
+let blogPosts={};
+const catIcons={
+  ITR:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>',
+  GST:'<path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>',
+  Notices:'<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/>',
+  TDS:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>',
+  MCA:'<path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/>',
+  General:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>'
 };
-function openBlog(id){
-  const b=blogs[id];
+function fmtDate(iso){
+  try{return new Date(iso).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});}catch(e){return '';}
+}
+function renderBlogCards(posts){
+  const grid=document.getElementById('blogGrid');
+  if(!posts.length){grid.innerHTML='<p style="text-align:center;color:var(--ink-soft);grid-column:1/-1">No articles published yet — check back soon.</p>';return;}
+  const colors=['a','b','c'];
+  grid.innerHTML=posts.map((p,i)=>{
+    const colorClass=colors[i%3];
+    const icon=catIcons[p.category]||catIcons.General;
+    const imgHtml=p.image
+      ? `<img src="${p.image}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">`
+      : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${icon}</svg>`;
+    const meta=[fmtDate(p.date),p.readtime].filter(Boolean).join(' · ');
+    return `<article class="post reveal" onclick="openBlog('${p.slug}')">
+        <div class="pimg ${colorClass}">
+          <span class="pcat">${p.category}</span>
+          ${imgHtml}
+        </div>
+        <div class="pbody">
+          <span class="pdate">${meta}</span>
+          <h3>${p.title}</h3>
+          <p>${p.summary||''}</p>
+          <span class="pread">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>`;
+  }).join('');
+}
+function openBlog(slug){
+  const b=blogPosts[slug];
+  if(!b)return;
+  const meta=[fmtDate(b.date),b.readtime].filter(Boolean).join(' · ');
   showModal(`
   <div class="article-topbar">
     <span class="at-brand">Clean<span>ITR</span></span>
@@ -1469,13 +1450,13 @@ function openBlog(id){
   </div>
   <div class="article-hero">
     <div class="article-hero-in">
-      <span class="acat">${b.cat}</span>
+      <span class="acat">${b.category}</span>
       <h1>${b.title}</h1>
-      <div class="a-meta"><span>By Clean ITR Team</span><span class="dot"></span><span>${b.meta}</span></div>
+      <div class="a-meta"><span>By Clean ITR Team</span><span class="dot"></span><span>${meta}</span></div>
     </div>
   </div>
   <div class="article-wrap">
-    <div class="article-body">${b.body}</div>
+    <div class="article-body">${b.bodyHtml}</div>
     <div class="article-cta">
       <h3>Want this handled by a real CA?</h3>
       <p>Skip the guesswork. Share your documents and let our Chartered Accountants take care of it — reviewed, cross-checked and filed on time.</p>
@@ -1486,6 +1467,13 @@ function openBlog(id){
     </div>
   </div>`,true);
 }
+fetch('/posts.json?_='+Date.now()).then(r=>r.json()).then(posts=>{
+  blogPosts=Object.fromEntries(posts.map(p=>[p.slug,p]));
+  renderBlogCards(posts);
+}).catch(err=>{
+  document.getElementById('blogGrid').innerHTML='<p style="text-align:center;color:var(--ink-soft);grid-column:1/-1">Unable to load articles right now.</p>';
+  console.error('Failed to load posts.json',err);
+});
 
 /* ===== EMBEDDED TOOLS (iframe) ===== */
 const TOOLS={
