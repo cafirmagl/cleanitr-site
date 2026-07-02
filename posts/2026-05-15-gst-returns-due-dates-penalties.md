@@ -3,9 +3,9 @@ title: "GST returns: due dates & penalties you shouldn't miss"
 category: GST
 readtime: 5 min read
 date: 2026-05-15T10:00:00.000+05:30
-image: ""
-summary: >-
-  Everything a small business needs to know to stay penalty-free this financial year.
+image: /images/uploads/who-is-eligible-for-gst-return.jpg
+summary: Everything a small business needs to know to stay penalty-free this
+  financial year.
 ---
 For any GST-registered business, missing a return deadline isn't just a paperwork slip — it triggers late fees, interest, and can even block your e-way bills. Here's what every small business should keep on its radar.
 
