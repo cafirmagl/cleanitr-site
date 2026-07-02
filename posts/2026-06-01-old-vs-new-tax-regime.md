@@ -3,9 +3,9 @@ title: "Old vs New Tax Regime: which one is right for you?"
 category: ITR
 readtime: 6 min read
 date: 2026-06-01T10:00:00.000+05:30
-image: ""
-summary: >-
-  A side-by-side breakdown to help salaried taxpayers pick the regime that saves the most.
+image: /images/uploads/new-tax-or-old-tax-regime.jpg
+summary: A side-by-side breakdown to help salaried taxpayers pick the regime
+  that saves the most.
 ---
 Every year, salaried taxpayers face the same question at filing time — should you stick with the old tax regime and its deductions, or move to the new regime with lower slab rates? The right answer depends entirely on your numbers, so let's break it down.
 
