@@ -1435,6 +1435,13 @@ function renderBlogCards(posts){
         </div>
       </article>`;
   }).join('');
+  // The site's scroll-reveal IntersectionObserver (`io`) only observes elements
+  // present at page load. These cards are injected after that, so we need to
+  // register them with the same observer — otherwise they stay invisible
+  // (opacity:0) even though they're clickable.
+  if(typeof io!=='undefined'){
+    grid.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  }
 }
 function openBlog(slug){
   const b=blogPosts[slug];
