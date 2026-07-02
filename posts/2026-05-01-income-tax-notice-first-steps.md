@@ -1,11 +1,11 @@
 ---
-title: "Got an income tax notice? Here's what to do first."
+title: Got an income tax notice? Here's what to do first.
 category: Notices
 readtime: 4 min read
 date: 2026-05-01T10:00:00.000+05:30
-image: ""
-summary: >-
-  Don't panic. A calm, step-by-step guide to reading and responding to a tax notice.
+image: /images/uploads/images.png
+summary: Don't panic. A calm, step-by-step guide to reading and responding to a
+  tax notice.
 ---
 Receiving a notice from the Income Tax Department can feel alarming — but most notices are routine and easily resolved if you respond correctly and on time. Here's a calm, step-by-step approach.
 
